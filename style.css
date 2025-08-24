@@ -1,0 +1,135 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  background: #191c2d;
+  color: #222;
+  overflow-x: hidden;
+}
+.parallax-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width:100vw; height:100vh;
+  z-index: -2; opacity: .45;
+  background: radial-gradient(circle at 60% 60%, #0c1b3e 0%, #191c2d 72%, #2a164b 100%);
+  animation: bgmove 18s linear infinite alternate;
+}
+@keyframes bgmove {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+header {
+  color: #fff;
+  text-align: center;
+  padding: 2rem 0 1.2rem 0;
+  background: transparent;
+}
+header h1 {
+  font-size: 2.7rem; font-weight: 900; letter-spacing: 2px; margin:0;
+  background: linear-gradient(90deg, #fa5d2e, #12e5c4);
+}
+header p { font-size: 1.14rem; margin-top: .3rem; }
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .6rem;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  list-style: none;
+}
+nav ul li {
+  background: #232458;
+  color: #fff; border-radius: 24px;
+  font-size: 1.05rem; cursor: pointer; padding: .56em 1.3em; box-shadow: 0 4px 24px #0002;
+  transform: perspective(500px) rotateX(6deg) scale(1);
+  transition: background .25s, box-shadow .25s, transform .22s;
+  position: relative;
+  overflow: hidden;
+}
+nav ul li.active, nav ul li:hover {
+  background: linear-gradient(120deg, #fa5d2e 55%, #12e5c4 96%);
+  color: #fff;
+  box-shadow: 0 12px 32px #fa5d2e44;
+  transform: scale(1.07) rotateY(-8deg);
+}
+nav ul li span {
+  display: block;
+  font-weight: 600; letter-spacing: 1px;
+}
+
+#portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2.7rem; max-width: 1200px;
+  margin: 2rem auto 1rem auto; padding: 0 2vw;
+}
+.portfolio-card {
+  perspective: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-3d {
+  background: rgba(55,60,120,0.67);
+  border-radius: 1.3rem;
+  box-shadow: 0 14px 64px #0004, 0 2px 16px #fa5d2e20;
+  border: 2px solid transparent;
+  padding: 1.3rem 1.2rem 1.1rem 1.2rem;
+  transition:
+    transform 0.25s cubic-bezier(.39,1.55,.54,.97),
+    box-shadow 0.17s cubic-bezier(.39,1.55,.54,.97),
+    border 0.19s;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg) scale(1);
+  will-change: transform;
+  position: relative;
+  backdrop-filter: blur(2px);
+}
+.portfolio-card:hover .card-3d, .card-3d.active {
+  transform: rotateY(13deg) scale(1.07);
+  box-shadow: 0 32px 90px #fa5d2e62, 0 2px 16px #12e5c430;
+  border: 2px solid #fa5d2e;
+  z-index: 2;
+}
+
+.card-3d video {
+  width: 100%; aspect-ratio: 16/9;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px #0e1b44a6;
+  margin-bottom: .9rem;
+  transition: box-shadow 0.32s, transform 0.30s cubic-bezier(.39,1.55,.54,.97);
+  cursor: pointer;
+  background: #191c2d;
+  border: 1px solid #fff2;
+}
+.card-3d:hover video {
+  box-shadow: 0 18px 72px #fa5d2ea8;
+  transform: scale(1.024) rotateZ(-2deg);
+}
+.card-3d h3 {
+  margin:0;
+  font-size: 1.16rem; color: #fff; font-weight: 700; letter-spacing:1px;
+  text-shadow: 0 2px 8px #222;
+}
+.card-3d::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 1.3rem; z-index: 1; pointer-events: none;
+  border: 2px solid transparent;
+  transition: border .22s;
+}
+.card-3d:hover::before {
+  border: 2px solid #12e5c4;
+  box-shadow: 0 0 16px #12e5c466;
+}
+footer {
+  background: transparent;
+  color: #fff; text-align: center; font-size: 1rem;
+  padding: 2rem 0 1rem 0;
+  margin-top: 2rem;
+  text-shadow: 0 2px 14px #0e1b44c6;
+}
+@media (max-width: 900px) {
+  header h1 { font-size: 1.5rem; }
+  #portfolio-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+}
